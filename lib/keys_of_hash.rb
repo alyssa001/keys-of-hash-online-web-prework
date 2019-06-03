@@ -1,12 +1,11 @@
 class Hash
- def keys_of(*arguments)
-    
-		array = []
-		self.each { |array, place|
-			if arguments.include?(place)
-				arrays << array
-			end
-		}
-		return array
-  end	  
-end 	
+ def keys_of(arg, *args)
+    values = [arg, *args]
+    values.flatten!
+    array = Array.new
+    self.each {|key, val|
+      array.push(key) if values.include?(val)
+      }
+    array
+  end
+end
